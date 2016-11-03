@@ -31,18 +31,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:layout_marginStart="18dp"
-        android:id="@+id/usernameInput"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passwordInput"
@@ -51,34 +39,58 @@
         android:layout_alignStart="@+id/usernameInput" />
 
     <Button
-        android:text="Save User"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordInput"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="41dp"
-        android:id="@+id/button"
-        android:onClick="saveInfo" />
-
-    <Button
         android:text="Display user info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignEnd="@+id/passwordInput"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="11dp"
         android:id="@+id/button2"
-        android:onClick="displayData" />
+        android:onClick="displayData"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp" />
+
+    <Button
+        android:text="Save User"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:id="@+id/button"
+        android:onClick="saveInfo"
+        android:layout_below="@+id/passwordInput"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="108dp"
         android:id="@+id/infoText"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:textStyle="normal|italic"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Enter you username"
+        android:ems="10"
+        android:layout_marginStart="16dp"
+        android:id="@+id/usernameInput"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/infoText"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/next" />
 
 </RelativeLayout>
