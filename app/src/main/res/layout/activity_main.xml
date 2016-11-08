@@ -4,92 +4,59 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/backgroundPage"
     tools:context="com.teicm.fiveandone.MainActivity">
 
-    <TextView
-        android:text="Password :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Username :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordInput"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/usernameInput" />
-
-    <Button
-        android:text="εμφανιση στοιχειων"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:onClick="displayData"
-        android:layout_alignBaseline="@+id/button"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="14dp" />
-
-    <Button
-        android:text="Αποθηκευση"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:id="@+id/button"
-        android:onClick="saveInfo"
-        android:layout_below="@+id/passwordInput"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/infoText"
-        android:layout_below="@+id/button2"
+    <ImageView
+        android:id="@+id/flags"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        android:fontFamily="sans-serif"
-        android:textSize="24sp"
-        android:textStyle="normal|italic"
-        android:textAlignment="center"
-        android:visibility="visible" />
+        android:background="@drawable/monsters_university"
+        android:gravity="center" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginStart="16dp"
-        android:id="@+id/usernameInput"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
+    <RelativeLayout
+        android:layout_below="@+id/flags"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:elevation="4dp"
+        android:background="@drawable/round_corner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/infoText"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/next" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/btnGroup"
+            android:paddingTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/btnPlay"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_margin="8dp"
+                android:background="#ff1a75"
+                android:text="PLAY"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnScore"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_margin="8dp"
+                android:background="#6699ff"
+                android:text="SCORE"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 </RelativeLayout>

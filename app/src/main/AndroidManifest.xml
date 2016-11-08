@@ -18,9 +18,11 @@
         <activity android:name=".QuizActivity">
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SCAN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ScoreActivity"></activity>
     </application>
 
 </manifest>
