@@ -12,13 +12,52 @@
 
     <TextView
         android:text="TextView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/Καλωσήρθατε"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold"
-        android:textSize="18sp" />
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/QuestionTextView"
+        android:layout_width="match_parent" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_below="@+id/QuestionTextView"
+        android:layout_alignStart="@+id/QuestionTextView"
+        android:layout_marginTop="20dp"
+        android:id="@+id/AnswerText" />
+
+    <Button
+        android:text="Check Answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AnswerText"
+        android:layout_alignStart="@+id/AnswerText"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="19dp"
+        android:id="@+id/AnswerButton" />
+
+    <Button
+        android:text="Show Next Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AnswerTextView"
+        android:layout_alignStart="@+id/AnswerButton"
+        android:layout_marginTop="24dp"
+        android:id="@+id/QuestionButton" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_marginTop="12dp"
+        android:id="@+id/AnswerTextView"
+        android:layout_below="@+id/AnswerButton"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

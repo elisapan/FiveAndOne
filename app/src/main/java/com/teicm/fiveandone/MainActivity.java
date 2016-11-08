@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent act = new Intent(MainActivity.this, Activity2.class);
+                Intent act = new Intent(MainActivity.this, QuizActivity.class);
                 startActivity(act);
 
             }
@@ -42,9 +42,14 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = (EditText) findViewById(R.id.usernameInput) ;
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         infoText = (TextView) findViewById(R.id.infoText);
-        init();
+        //init();
+
+
 
     }
+
+
+
     //Save Info
     public void saveInfo(View view){
         SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("password", passwordInput.getText().toString());
         editor.apply();
 
-        Toast.makeText(this, "saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Saved !", Toast.LENGTH_LONG).show();
     }
 
 //Print the data
@@ -62,9 +67,21 @@ public class MainActivity extends AppCompatActivity {
     public void displayData(View view) {
         SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
-        String name = sharedPref.getString("username", "");
+        final String name = sharedPref.getString("username", "");
         String pw = sharedPref.getString("password", "");
-        infoText.setText(name + " " + pw);
+        infoText.setText("Username:" + name + " "+" Password:" + pw);
+
+        //
+        button1 = (Button) findViewById(R.id.next);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent act = new Intent(MainActivity.this, QuizActivity.class);
+                act.putExtra("parameter",name);
+                startActivity(act);
+
+            }
+        });
 
     }
 
