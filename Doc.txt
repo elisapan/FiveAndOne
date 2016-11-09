@@ -1,0 +1,79 @@
+ Doc
+
+MainActivity
+public class MainActivity 
+Κλάση στην οποία εμφανίζονται τα πεδία εγγαφης και τα κουμπιά αποθήκευσης εμφανισης πληροφοριών και συνέχειας.
+
+protected void onCreate(Bundle savedInstanceState)
+Καλείται όταν ξεκινάει το activity . Μέσα σε αυτό γίνεται η σύνδεση μεταξύ των γραφικών στοιχείων (buttons,textview) με τον κύριο κώδικα και τις λειτουργίες τους
+
+
+public void saveInfo(View view){
+Αποθήκευση των δεδομένω από τα πεδία
+
+SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+Διεπαφή για την πρόσβαση και την τροποποίηση δεδομένων. Οι τιμές αποθηκεύονται στο αρχείο ρυθμίσεων της εφαρμογής.
+
+Context.MODE_PRIVATE
+Λειτουργία δημιουργίας αρχείων. Το αρχείο που δημιουργείται μπορεί να προσπελαστεί μόνο από την εφαρμογή που κάνει την κλήση.
+
+public void displayData(View view)
+Εμφάνιση δεδομένων.
+
+
+
+QuizActivity
+public class QuizActivity 
+Η κεντρικη κλάση του activity
+
+Intent act = getIntent();
+String name = act.getExtras().getString("parameter");
+Περναει τα δεδομένα που θελουμε από activity σε activity
+
+public void init() {
+Εμφάνιση ερωτησεων,δραστηριοτητα πεδίων και κουμπιών
+
+public void ShowQuestion()
+Εμφάνιση ερωτήσεων κουιζ
+
+public boolean isCorrect (String answer){
+Ελεγχος μεταξυ ερωτησεων και απαντησεων με επιστροφη true or false
+
+equalsIgnoreCase(Answers [CurrentQuestion]
+Μέθοδος συγκρισης string αναλογα το μηκος και τα γράμματα. Δεν παιζει ρολο αν είναι κεφαλαι η μικρα.
+
+
+public void CheckAnswer()
+Ανάλογα την απάντηση στέλνει μήνυμα επιτυχίας ή αποτυχίας
+
+.length
+Μέθοδος που επιστρέφει το μήκος του string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Προβλήματα και επίλυση
+•	Can’t finish GitHub sharing process
+o	Επανεγκατάσταση του Git και σωστό path σε αυτό χωρίς να περιεχει ελληνικους χαρακτήρες
+•	Push code
+o	Για να ανέβει σωστα ο κωδικας πρέπει είτε να εχει γινει fork ο κωδικας ετσι ώστε να ανεβει με το ονομα του κάθε χρήστη είτε να δηλωθεί από τον owner του project σαν συνεργάτης έτσι ώστε ο κώδικας να ανεβαίνει με το όνομα του owner. Το δευτερο είανι επίφοβο διότι μπορεί να γίνει ζημια στον κώδικα
+
