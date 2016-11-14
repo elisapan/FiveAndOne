@@ -70,7 +70,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
-
+      //showquestions in quiz
     public void ShowQuestion()
     {
         CurrentQuestion ++;
@@ -83,11 +83,12 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-
+    //check correctivity of the answer
     public boolean isCorrect (String answer){
         return (answer.equalsIgnoreCase(Answers [CurrentQuestion]));
     }
 
+    //say if is true or false the amnswer
     public void CheckAnswer() {
         String ans = AnswerText.getText().toString();
         if(isCorrect(ans)== true )

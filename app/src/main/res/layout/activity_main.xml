@@ -8,7 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.teicm.fiveandone.MainActivity">
+    tools:context="com.teicm.fiveandone.MainActivity"
+    android:scrollIndicators="top|bottom"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="false">
 
     <TextView
         android:text="Password :"
@@ -87,9 +90,20 @@
         android:text="Next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/infoText"
         android:layout_marginBottom="25dp"
-        android:id="@+id/next" />
+        android:id="@+id/next"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Χαρτης"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/map"
+        android:visibility="visible"
+        android:elevation="0dp"
+        android:layout_alignBaseline="@+id/next"
+        android:layout_alignBottom="@+id/next"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

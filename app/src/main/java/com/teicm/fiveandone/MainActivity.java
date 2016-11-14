@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     EditText usernameInput;
     EditText passwordInput;
     TextView infoText;
+    Button map;
+
+
     public Button button1;
     public void init(){
 
@@ -34,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = (EditText) findViewById(R.id.usernameInput) ;
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         infoText = (TextView) findViewById(R.id.infoText);
+        map =(Button) findViewById(R.id.map);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+                final String name = sharedPref.getString("username", "");
+                Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
+                myIntent.putExtra("parameter",name);
+                startActivity(myIntent);
+
+                MainActivity.this.startActivity(myIntent);
+
+            }
+        });
+
+
         //init();
 
 
