@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.teicm.fiveandone.StartMenuActivity">
+
+    <TextView
+        android:text="Our team : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textStyle="bold"
+        android:layout_marginBottom="14dp"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignStart="@+id/rating_b" />
+
+    <TextView
+        android:text="Touloumis Nikos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="Panagiwtidou Elissavet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:text="Charisiadou Amalia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <TextView
+        android:text="Alelh Katerina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:text="Theocharidou Eloida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:text="Zygourh Olga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_sbm"
+        android:layout_marginStart="23dp"
+        android:layout_alignTop="@+id/rating_b"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginTop="57dp" />
+
+    <TextView
+        android:text="This is a game made by the team FiveAndOne ,  as a project in Software Technology class.  "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textStyle="bold"
+        android:padding="50dp"
+        android:layout_marginTop="112dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating_b"
+        android:layout_marginTop="27dp"
+        android:numStars="5"
+        android:rating="2"
+        android:stepSize="1"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:padding="0dp"
+        android:elevation="4dp"
+        android:background="@android:color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:text="About Us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:id="@+id/AboutUs"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/back"
+            android:layout_marginStart="16dp"
+            android:background="@color/white"
+            android:id="@+id/btnBack"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
