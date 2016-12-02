@@ -2,6 +2,7 @@ package com.teicm.fiveandone;
 
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MapQuiz extends AppCompatActivity {
     private TextView AnswerTextView;
     private EditText AnswerText;
     private TextView Welcome;
+    private Button back;
 
 
 
@@ -34,8 +36,12 @@ public class MapQuiz extends AppCompatActivity {
         QuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
         AnswerTextView = (TextView) findViewById(R.id.AnswerTextView);
         AnswerText = (EditText) findViewById(R.id.AnswerText);
-        Welcome.setText("Καλωσήρθες χρήστη στο παιχνίδι: ");
+        Welcome.setText("Καλωσήρθες στο παιχνίδι: ");
         init();
+        back = (Button) findViewById(R.id.Back);
+        back.setVisibility(View.INVISIBLE);
+
+
 
 
 
@@ -44,9 +50,9 @@ public class MapQuiz extends AppCompatActivity {
 
     }
     public void init() {
-        Questions = new String[] {"What's the name of the town ? "};
-        Answers = new String [] {"thessaloniki"};
-        CurrentQuestion = 0;
+        Questions = new String[] {"What's the capital of Greece ? "};
+        Answers = new String [] {"Athens"};
+        //CurrentQuestion = 0;
         AnswerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -73,18 +79,19 @@ public class MapQuiz extends AppCompatActivity {
 
     }
 
-    //check correctivity of the answer
-    public boolean isCorrect (String answer){
-        return (answer.equalsIgnoreCase(Answers [CurrentQuestion]));
-    }
+
 
     //say if is true or false the amnswer
     public void CheckAnswer() {
         String ans = AnswerText.getText().toString();
-        if(isCorrect(ans)== true )
+        if(ans == "athens" ) {
             AnswerTextView.setText("Σωστό");
-        else
-            AnswerTextView.setText("Λάθος!! Η σωστη ειναι : " + Answers[CurrentQuestion]);
+            back.setVisibility(View.VISIBLE);
+        }
+        else {
+            AnswerTextView.setText("Λάθος!! Προσπάθησε πάλι.");
+            back.setVisibility(View.VISIBLE);
+        }
     }
 
 

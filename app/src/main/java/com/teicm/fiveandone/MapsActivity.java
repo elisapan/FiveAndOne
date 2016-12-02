@@ -21,14 +21,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView Welcome;
     private TextView Info;
     private Button Next;
+    private int level=1 ;
+    private Marker mSerres;
+    private Marker mThessaloniki;
+    private Marker mEdessa;
+    private Marker mLarissa;
+    private Marker mVolos;
+    private Marker mAthens;
+
+    private static final LatLng SERRES = new LatLng(41.07469264, 23.55348587);
+    private static final LatLng THESSALONIKI = new LatLng(40.640063, 22.944419);
+    private static final LatLng EDESSA = new LatLng(40.801680, 22.04398);
+    private static final LatLng LARISA = new LatLng(39.639022, 22.419125);
+    private static final LatLng VOLOS = new LatLng(39.362190, 22.942159);
+    private static final LatLng ATHENS = new LatLng(37.983810, 23.727539);
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Welcome = (TextView) findViewById(R.id.welcome);
         Info = (TextView) findViewById(R.id.info) ;
@@ -51,28 +68,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
-        mMap.setMinZoomPreference(10.5f);
+        mMap.setMinZoomPreference(7.5f);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
 
 
         //find my location
         //mMap.setMyLocationEnabled(true);
 
-        // Add a marker in Serres and move the camera
-        LatLng serres = new LatLng(41.07469264, 23.55348587);
-        LatLng salonika = new LatLng(40.640063, 22.944419);
+        mSerres = mMap.addMarker(new MarkerOptions().position(SERRES).title("Σέρρες").snippet("Πρώτη τοποθεσία"));
+        mThessaloniki = mMap.addMarker(new MarkerOptions().position(THESSALONIKI).title("Θεσσαλονίκη").snippet("Δεύτερη τοποθεσία"));
+        mEdessa = mMap.addMarker(new MarkerOptions().position(EDESSA).title("Έδεσσα").snippet("Τρίτη τοποθεσία"));
+       // mLarissa = mMap.addMarker(new MarkerOptions().position(LARISA).title("Λαρισσα").snippet("Τέταρτη τοποθεσία"));
+        mVolos = mMap.addMarker(new MarkerOptions().position(VOLOS).title("Βόλος").snippet("Πέμπτη τοποθεσία"));
+        mAthens = mMap.addMarker(new MarkerOptions().position(ATHENS).title("Αθήνα").snippet("Έκτη τοποθεσία"));
+        mLarissa = mMap.addMarker(new MarkerOptions().position(LARISA).title("Λάρισσα").snippet("Έβδομη τοποθεσία"));
 
-        mMap.addMarker(new MarkerOptions().position(serres).title("Σέρρες").snippet("Πρώτη τοποθεσία"));
-        mMap.addMarker(new MarkerOptions().position(salonika).title("Θεσσαλονίκη").snippet("Δεύτερη τοποθεσία"));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(serres));
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(SERRES));
+
+        mSerres.setVisible(true);
+        mThessaloniki.setVisible(false);
+        mEdessa.setVisible(true);
+        mLarissa.setVisible(true);
+        mVolos.setVisible(false);
+        mAthens.setVisible(true);
+        
+
+
+
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if(marker.getTitle().equals("Σέρρες")) { // if marker source is clicked
-                    Info.setText("Πρώτο επίπεδο.Πηγαινε Θεσσαλονίκη");
-                    Next.setVisibility(View.INVISIBLE);
-                } else if (marker.getTitle().equals("Θεσσαλονίκη")){
+                    Info.setText("Πρώτο επίπεδο.Καλωσήρθες στη Σέρρες. Πάτησε το κουμπί για να λύσεις τον γρίφο.");
+                    Next.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act2 = new Intent(MapsActivity.this, MapQuiz.class);
+                            startActivity(act2);
+                        }
+                    });
+
+
+                } else if (level==2){
                     Info.setText("Καλωσήρθες Θεσσαλονίκη");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
