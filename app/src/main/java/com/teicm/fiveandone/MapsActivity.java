@@ -81,7 +81,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mSerres = mMap.addMarker(new MarkerOptions().position(SERRES).title("Σέρρες").snippet("Πρώτη τοποθεσία"));
         mThessaloniki = mMap.addMarker(new MarkerOptions().position(THESSALONIKI).title("Θεσσαλονίκη").snippet("Δεύτερη τοποθεσία"));
         mEdessa = mMap.addMarker(new MarkerOptions().position(EDESSA).title("Έδεσσα").snippet("Τρίτη τοποθεσία"));
-       // mLarissa = mMap.addMarker(new MarkerOptions().position(LARISA).title("Λαρισσα").snippet("Τέταρτη τοποθεσία"));
         mVolos = mMap.addMarker(new MarkerOptions().position(VOLOS).title("Βόλος").snippet("Πέμπτη τοποθεσία"));
         mAthens = mMap.addMarker(new MarkerOptions().position(ATHENS).title("Αθήνα").snippet("Έκτη τοποθεσία"));
         mLarissa = mMap.addMarker(new MarkerOptions().position(LARISA).title("Λάρισσα").snippet("Έβδομη τοποθεσία"));
@@ -92,10 +91,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SERRES));
 
         mSerres.setVisible(true);
-        mThessaloniki.setVisible(false);
+        mThessaloniki.setVisible(true);
         mEdessa.setVisible(true);
         mLarissa.setVisible(true);
-        mVolos.setVisible(false);
+        mVolos.setVisible(true);
         mAthens.setVisible(true);
         
 
