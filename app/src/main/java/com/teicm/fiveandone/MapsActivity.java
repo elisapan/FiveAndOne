@@ -1,11 +1,17 @@
 package com.teicm.fiveandone;
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,7 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView Welcome;
     private TextView Info;
     private Button Next;
-    private int level=1 ;
+    private int level = 1;
     private Marker mSerres;
     private Marker mThessaloniki;
     private Marker mEdessa;
@@ -37,9 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final LatLng ATHENS = new LatLng(37.983810, 23.727539);
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +51,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Welcome = (TextView) findViewById(R.id.welcome);
-        Info = (TextView) findViewById(R.id.info) ;
-        Next = (Button) findViewById(R.id.next) ;
+        Info = (TextView) findViewById(R.id.info);
+        Next = (Button) findViewById(R.id.next);
         //Next.setOnClickListener(this);
         Next.setVisibility(View.INVISIBLE);
 
         Intent act = getIntent();
         String name = act.getExtras().getString("parameter");
-        Welcome.setText("Καλωσήρθες χρήστη: "+name);
+        Welcome.setText("Καλωσήρθες χρήστη: " + name);
 
 
     }
@@ -74,9 +77,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.getUiSettings().setZoomControlsEnabled(true);
 
 
-
         //find my location
-        //mMap.setMyLocationEnabled(true);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            mMap.setMyLocationEnabled(true);
+        } else {
+            Toast.makeText(MapsActivity.this, "You have to accept to enjoy all app's services!", Toast.LENGTH_LONG).show();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mMap.setMyLocationEnabled(true);
+            }
+        }
+        mMap.setMyLocationEnabled(true);
 
         mSerres = mMap.addMarker(new MarkerOptions().position(SERRES).title("Σέρρες").snippet("Πρώτη τοποθεσία"));
         mThessaloniki = mMap.addMarker(new MarkerOptions().position(THESSALONIKI).title("Θεσσαλονίκη").snippet("Δεύτερη τοποθεσία"));
