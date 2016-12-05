@@ -52,6 +52,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapQuiz" />
+        <activity android:name=".StartMenuActivity" />
+        <activity android:name=".ScoreActivity" />
+        <activity android:name=".Settings" />
+        <activity android:name=".Gift" />
+        <activity android:name=".Result" />
+        <activity android:name=".About" />
+        <activity android:name=".User"></activity>
     </application>
 
 </manifest>
