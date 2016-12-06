@@ -1,11 +1,16 @@
 package com.teicm.fiveandone;
 
+import android.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -76,7 +81,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //find my location
-        //mMap.setMyLocationEnabled(true);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            mMap.setMyLocationEnabled(true);
+        } else {
+            Toast.makeText(MapsActivity.this, "Πρέπει να ενεργοποιήσετε το GPS για την ευρεση της τοποθεσίας σας", Toast.LENGTH_LONG).show();
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mMap.setMyLocationEnabled(true);
+            }
+        }
+        mMap.setMyLocationEnabled(true);
 
         mSerres = mMap.addMarker(new MarkerOptions().position(SERRES).title("Σέρρες").snippet("Πρώτη τοποθεσία"));
         mThessaloniki = mMap.addMarker(new MarkerOptions().position(THESSALONIKI).title("Θεσσαλονίκη").snippet("Δεύτερη τοποθεσία"));
@@ -96,7 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mLarissa.setVisible(true);
         mVolos.setVisible(true);
         mAthens.setVisible(true);
-        
+
 
 
 
@@ -114,9 +129,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(act2);
                         }
                     });
+                    level=2;
 
 
-                } else if (level==2){
+                } else if (marker.getTitle().equals("Θεσσαλονίκη")&&level==2){
                     Info.setText("Καλωσήρθες Θεσσαλονίκη");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
@@ -128,9 +144,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         }
                     });
+                    level=3;
+                }
+                else if (marker.getTitle().equals("Βόλος")&&level==3){
+                    Info.setText("Καλωσήρθες στο Βόλο. Πάτα το κουμπί να λύσεις το γρίφο");
+                    Next.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act2 = new Intent(MapsActivity.this, MultipleChoiceActivity.class);
+                            //act2.putExtra("parameter",name);
+                            startActivity(act2);
+
+                        }
+                    });
+
+
+
                 }
 
-                        return true;
+                return true;
             }
         });
 

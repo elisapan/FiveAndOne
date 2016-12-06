@@ -41,7 +41,7 @@ public class StartMenuActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),QuizActivity.class);
+                Intent intent = new Intent(StartMenuActivity.this ,MainActivity.class);
                 startActivity(intent);
                 finish();
             }

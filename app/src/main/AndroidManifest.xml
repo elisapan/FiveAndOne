@@ -19,8 +19,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.google.zxing.client.android.SCAN" />
 
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -52,13 +53,63 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapQuiz" />
-        <activity android:name=".StartMenuActivity" />
-        <activity android:name=".ScoreActivity" />
-        <activity android:name=".Settings" />
-        <activity android:name=".Gift" />
-        <activity android:name=".Result" />
-        <activity android:name=".About" />
-        <activity android:name=".User"></activity>
+        <activity android:name=".StartMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ScoreActivity">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Settings">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Gift">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Result">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".About">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".User">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MultipleChoiceActivity" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>
