@@ -126,9 +126,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(act2);
                         }
                     });
+                    level=2;
 
 
-                } else if (level==2){
+                } else if (marker.getTitle().equals("Θεσσαλονίκη")&&level==2){
                     Info.setText("Καλωσήρθες Θεσσαλονίκη");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +141,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         }
                     });
+                    level=3;
+                }
+                else if (marker.getTitle().equals("Βόλος")&&level==3){
+                    Info.setText("Καλωσήρθες στο Βόλο. Πάτα το κουμπί να λύσεις το γρίφο");
+                    Next.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act2 = new Intent(MapsActivity.this, MultipleChoiceActivity.class);
+                            //act2.putExtra("parameter",name);
+                            startActivity(act2);
+
+                        }
+                    });
+
+
+
                 }
 
                         return true;
