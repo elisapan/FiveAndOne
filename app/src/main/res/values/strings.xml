@@ -6,4 +6,24 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_maps2">Map</string>
+
+    <string name="sex">select the sex</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="select_hair_color">select hair color</string>
+    <string name="color_eye">select eye color </string>
+    <string name="blue">blue</string>
+    <string name="black">black</string>
+    <string name="green">green</string>
+    <string name="brown">brown</string>
+
+    <string-array name="hair_color">
+
+        <item name="blond"/>
+        <item name="black"/>
+        <item name="brown"/>
+
+    </string-array>
+
+
 </resources>
