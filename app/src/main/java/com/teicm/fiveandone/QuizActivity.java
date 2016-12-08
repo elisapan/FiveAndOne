@@ -42,7 +42,7 @@ public class QuizActivity extends AppCompatActivity {
     private EditText AnswerText;
     private TextView Welcome;
     private Button Close;
-    public List<clsQuestion> questions;
+    public final List<clsQuestion> questions=new ArrayList<clsQuestion>();
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -59,6 +59,38 @@ public class QuizActivity extends AppCompatActivity {
         Intent act = getIntent();
         String name = act.getExtras().getString("parameter");
 
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        ValueEventListener john = mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot category : dataSnapshot.getChildren())
+                {
+                    for (DataSnapshot question : category.getChildren())
+                    {
+                        clsQuestion q = new clsQuestion(category.getKey(), question.getKey(), question.getValue().toString());
+
+                        questions.add(q);
+                        int i=questions.size()-1;
+                        Log.d("jolllllhn", questions.get(i).getqType()+ " "+ questions.get(i).getqQuestion() + " "+questions.get(i).getqAnswer());
+
+                    }
+                }
+                init();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+
+
         Welcome = (TextView) findViewById(R.id.welcome);
         AnswerButton = (Button) findViewById(R.id.AnswerButton);
         QuestionButton = (Button) findViewById(R.id.QuestionButton);
@@ -67,8 +99,8 @@ public class QuizActivity extends AppCompatActivity {
         AnswerText = (EditText) findViewById(R.id.AnswerText);
         Close = (Button) findViewById(R.id.close);
         Welcome.setText("Καλωσήρθες χρήστη: " + name);
-        questions = new ArrayList<clsQuestion>();
-        init();
+
+
         Close.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -86,10 +118,10 @@ public class QuizActivity extends AppCompatActivity {
 
     public void init() {
 
-        initializeQuestions();
-
-        Log.d("Johnnnnnnnnnnnnnnnnn",Integer.toString(questions.size()));
-
+        for(clsQuestion x: this.questions)
+        {
+            Log.d("jo   lbbbbbbbbhn", x.getqType()+ " "+ x.getqQuestion() + " "+x.getqAnswer());
+        }
         Questions = new String[]{"What's the name of this programming language ? ", "What's the opposite of black ?", "What's the capital of Greece ?"};
         Answers = new String[]{"java", "white", "athens"};
         CurrentQuestion = 0;
@@ -178,43 +210,6 @@ public class QuizActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    private void initializeQuestions()
-    {
-
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        ValueEventListener john = mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot category : dataSnapshot.getChildren())
-                {
-                    for (DataSnapshot question : category.getChildren())
-                    {
-                        clsQuestion q = new clsQuestion(category.getKey(), question.getKey(), question.getValue().toString());
-
-                        questions.add(q);
-                        int i=questions.size()-1;
-                        Log.d("jolllllhn", questions.get(i).getqType()+ " "+ questions.get(i).getqQuestion() + " "+questions.get(i).getqAnswer());
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-
-
-
-
-    }
 
     class clsQuestion
     {
