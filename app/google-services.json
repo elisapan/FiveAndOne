@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "523434674703",
+    "firebase_url": "https://fivetoone-979fa.firebaseio.com",
+    "project_id": "fivetoone-979fa",
+    "storage_bucket": "fivetoone-979fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523434674703:android:d334b101912aa85a",
+        "android_client_info": {
+          "package_name": "com.teicm.fiveandone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523434674703-ojo50hedticpp5phv7of7d8ujqdbt8mg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teicm.fiveandone",
+            "certificate_hash": "EF66A9465E55672E9BE010701296E67429409DE4"
+          }
+        },
+        {
+          "client_id": "523434674703-jqoildfn6u0gep29rb44ejjns9v6s6dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDhS4eWvDh_QhKKWkG0dQjjHo51pyvvro"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523434674703-jqoildfn6u0gep29rb44ejjns9v6s6dp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
