@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    tools:context=".Levelc">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:padding="18dip"
+                android:text="3.Ποιο ετος υπεγραψε η Ελλαδα το πρωτο μνημονιο με το ΔΝΤ? "
+                android:textColor="#ffffff"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RadioGroup
+                android:id="@+id/lev_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4" >
+
+                <RadioButton
+                    android:id="@+id/a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2010"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:id="@+id/b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2007"
+                    android:textColor="#000000" />
+            </RadioGroup>
+
+        </TableRow>
