@@ -152,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Next.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent act2 = new Intent(MapsActivity.this, MultipleChoiceActivity.class);
+                            Intent act2 = new Intent(MapsActivity.this, MapQuiz.class);
                             //act2.putExtra("parameter",name);
                             startActivity(act2);
 

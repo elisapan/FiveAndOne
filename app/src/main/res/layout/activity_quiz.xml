@@ -29,6 +29,14 @@
         android:layout_alignEnd="@+id/QuestionButton"
         android:onClick="onClick (QuizActivity)" />
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner2"
+        android:layout_below="@+id/welcome"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
     <Button
         android:text="Ελεγχος απαντησης"
         android:layout_width="match_parent"
@@ -36,18 +44,51 @@
         android:id="@+id/AnswerButton"
         android:onClick="CheckAnswer"
         android:layout_above="@+id/close"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="37dp" />
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="ΕΜΦΑΝΙΣΗ ΕΡΩΤΗΣΗΣ"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/radioG"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/QuestionButton"
-        android:onClick="ShowQuestion (QuizActivity)"
-        android:layout_below="@+id/welcome"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp" />
+        android:layout_below="@+id/spinner2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp">
+
+
+
+    <RadioButton
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:id="@+id/radioButton7"
+        android:layout_below="@+id/spinner2"
+        android:layout_toStartOf="@+id/radioGroup3" />
+
+    <RadioButton
+    android:text="RadioButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/radioButton6"
+        android:layout_below="@+id/radioButton7"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioButton9"
+        android:layout_below="@+id/radioButton6"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioButton8"
+        android:layout_below="@+id/radioButton9"
+        android:layout_alignParentStart="true" />
+    </RadioGroup>
 
     <TextView
         android:layout_width="match_parent"
@@ -56,31 +97,8 @@
         android:textStyle="normal|bold"
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@+id/QuestionButton"
+        android:layout_below="@+id/spinner2"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/AnswerText"
-        android:contentDescription="Enter your answer"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/QuestionTextView"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/AnswerTextView"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_marginBottom="56dp"
-        android:layout_above="@+id/AnswerButton"
-        android:layout_alignParentStart="true"
-        android:editable="false" />
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>
