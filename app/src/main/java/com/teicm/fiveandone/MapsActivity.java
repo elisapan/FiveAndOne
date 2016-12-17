@@ -26,6 +26,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView Welcome;
     private TextView Info;
     private Button Next;
+    private Button Bonus;
     private int level=1 ;
     private Marker mSerres;
     private Marker mThessaloniki;
@@ -43,6 +44,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == QuizActivity.RESULT_OK){
+                String result=data.getStringExtra("result");
+            }
+            if (resultCode == QuizActivity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
+
+
 
 
     @Override
@@ -57,6 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Next = (Button) findViewById(R.id.next) ;
         //Next.setOnClickListener(this);
         Next.setVisibility(View.INVISIBLE);
+        Bonus = (Button) findViewById(R.id.bonusbtn) ;
+        Bonus.setVisibility(View.INVISIBLE);
 
         Intent act = getIntent();
         String name = act.getExtras().getString("parameter");
@@ -106,11 +123,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SERRES));
 
         mSerres.setVisible(true);
-        mThessaloniki.setVisible(true);
-        mEdessa.setVisible(true);
-        mLarissa.setVisible(true);
-        mVolos.setVisible(true);
-        mAthens.setVisible(true);
+        mThessaloniki.setVisible(false);
+        mEdessa.setVisible(false);
+        mLarissa.setVisible(false);
+        mVolos.setVisible(false);
+        mAthens.setVisible(false);
 
 
 
@@ -122,46 +139,96 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(marker.getTitle().equals("Σέρρες")) { // if marker source is clicked
                     Info.setText("Πρώτο επίπεδο.Καλωσήρθες στη Σέρρες. Πάτησε το κουμπί για να λύσεις τον γρίφο.");
                     Next.setVisibility(View.VISIBLE);
+
                     Next.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent act2 = new Intent(MapsActivity.this, MapQuiz.class);
-                            startActivity(act2);
+                            Intent act5 = new Intent(MapsActivity.this, QuizActivity.class);
+                            startActivityForResult(act5, 1);
+                            level=2;
+                            mThessaloniki.setVisible(true);
+
                         }
                     });
-                    level=2;
+
+
 
 
                 } else if (marker.getTitle().equals("Θεσσαλονίκη")&&level==2){
-                    Info.setText("Καλωσήρθες Θεσσαλονίκη");
+
+                    Info.setText("Δεύτερο επίπεδο.Καλωσήρθες στη Θεσσαλονίκη. Πάτησε το κουμπί για να λύσεις τον γρίφο.");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent act2 = new Intent(MapsActivity.this, MapQuiz.class);
-                            //act2.putExtra("parameter",name);
-                            startActivity(act2);
+                            Intent act5 = new Intent(MapsActivity.this, QuizActivity.class);
+                            startActivityForResult(act5, 1);
+                            level=3;
+                            mVolos.setVisible(true);
 
                         }
                     });
-                    level=3;
-                }
-                else if (marker.getTitle().equals("Βόλος")&&level==3){
-                    Info.setText("Καλωσήρθες στο Βόλο. Πάτα το κουμπί να λύσεις το γρίφο");
+
+                } else if (marker.getTitle().equals("Βόλος")&&level==3){
+                    Info.setText("Τρίτο επίπεδο.Καλωσήρθες στο Βόλο. Πάτησε το κουμπί για να λύσεις τον γρίφο.");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent act2 = new Intent(MapsActivity.this, MapQuiz.class);
-                            //act2.putExtra("parameter",name);
-                            startActivity(act2);
+                            Intent act5 = new Intent(MapsActivity.this, QuizActivity.class);
+                            startActivityForResult(act5, 1);
+                            level=4;
+                            mEdessa.setVisible(true);
 
                         }
                     });
 
 
 
+                }else if (marker.getTitle().equals("Έδεσσα")&&level==4){
+                    Info.setText("Τέταρτο επίπεδο.Καλωσήρθες στην Έδεσσα. Πάτησε το κουμπί για να λύσεις τον γρίφο.");
+                    Next.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act5 = new Intent(MapsActivity.this, QuizActivity.class);
+                            startActivityForResult(act5, 1);
+                            level=5;
+                            mAthens.setVisible(true);
+
+                        }
+                    });
+
+                }else if (marker.getTitle().equals("Αθήνα")&&level==5){
+                    Info.setText("Πέμπτο επίπεδο.Καλωσήρθες στην Αθήνα. Σε αυτό το σημείο πρέπει να λύσεις τον γρίφο και να περάσεις το Zombi level.");
+                    Next.setVisibility(View.VISIBLE);
+                    Bonus.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act5 = new Intent(MapsActivity.this, QuizActivity.class);
+                            startActivityForResult(act5, 1);
+                            level=6;
+                            //mAthens.setVisible(true);
+
+                        }
+                    });
+                    Bonus.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent act6 = new Intent(MapsActivity.this, Gift.class);
+                            startActivityForResult(act6, 1);
+                        }
+                    });
+
+
                 }
+
+
+
+
+
+
 
                 return true;
             }

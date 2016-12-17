@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         //init();
 
 
@@ -94,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
         final String name = sharedPref.getString("username", "");
         String pw = sharedPref.getString("password", "");
         infoText.setText("Username:" + name + " "+" Password:" + pw);
+
+
+
+
+
 
         //
         button1 = (Button) findViewById(R.id.next);

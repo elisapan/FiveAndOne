@@ -48,5 +48,14 @@
         android:id="@+id/next"
         android:textSize="14sp" />
 
+    <Button
+        android:text="Bonus Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/next"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:id="@+id/bonusbtn" />
+
 
 </RelativeLayout>

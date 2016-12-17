@@ -1,5 +1,6 @@
 package com.teicm.fiveandone;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Process;
@@ -16,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -50,6 +52,8 @@ public class QuizActivity extends AppCompatActivity
     private RadioButton radioButton8;
     private RadioButton radioButton9;
     private RadioGroup radioG;
+    private Button next;
+    private int i;
     public final List<clsQuestion> questions=new ArrayList<clsQuestion>(); //List of clsQuestion's members
     private List<String> cat = new ArrayList<String>();//This list is used to populate spinner2
     protected Random ran=new Random();
@@ -63,8 +67,8 @@ public class QuizActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        Intent act = getIntent();
-        String name = act.getExtras().getString("parameter");
+        //Intent act = getIntent();
+        //String name = act.getExtras().getString("parameter");
 
         score=0;
         Welcome = (TextView) findViewById(R.id.welcome);
@@ -72,13 +76,14 @@ public class QuizActivity extends AppCompatActivity
         QuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
         Close = (Button) findViewById(R.id.close);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
-        Welcome.setText("Καλωσήρθες χρήστη: " + name);
+        //Welcome.setText("Καλωσήρθες χρήστη: " + name);
         radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
         radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
         radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
         radioButton9 = (RadioButton) findViewById(R.id.radioButton9);
         radioG = (RadioGroup)  findViewById(R.id.radioG);
-
+        next = (Button) findViewById(R.id.buttonnext) ;
+        next.setVisibility(View.INVISIBLE);
 
         DatabaseReference mDatabase;                                    //Connect with Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();      //Take a Database's Shanpshot
@@ -180,12 +185,31 @@ public class QuizActivity extends AppCompatActivity
         {
             score = score + 1;
             Welcome.setText("SCORE: "+Integer.toString(score));
+            Toast.makeText(QuizActivity.this, "Σωστή απάντηση. Πάτησε το κουμπί δεξιά", Toast.LENGTH_LONG).show();
             Log.d("jolllllhn", "CORRECT");
+            next.setVisibility(View.VISIBLE);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent act = new Intent(QuizActivity.this, MapsActivity.class);
+                    //act2.putExtra("parameter",name);
+
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("result",1);
+                    setResult(Activity.RESULT_OK,returnIntent);
+                    finish();
+
+
+                }
+            } );
+
 
         }
         else
         {
             Log.d("jolllllhn", "WRONG");
+            Toast.makeText(QuizActivity.this, "Λάθος απάντηση", Toast.LENGTH_LONG).show();
+            next.setVisibility(View.INVISIBLE);
         }
 
     }
