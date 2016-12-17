@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -26,55 +31,85 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 import static android.R.id.list;
 
-public class QuizActivity extends AppCompatActivity {
-
-    private int CurrentQuestion;
-    private String[] Questions;
-    private String[] Answers;
-    private Button QuestionButton;
+public class QuizActivity extends AppCompatActivity
+{
     private Button AnswerButton;
     private TextView QuestionTextView;
     private TextView AnswerTextView;
     private EditText AnswerText;
     private TextView Welcome;
     private Button Close;
-    public final List<clsQuestion> questions=new ArrayList<clsQuestion>();
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    private Spinner spinner2;
+    private RadioButton radioButton7;
+    private RadioButton radioButton6;
+    private RadioButton radioButton8;
+    private RadioButton radioButton9;
+    private RadioGroup radioG;
+    public final List<clsQuestion> questions=new ArrayList<clsQuestion>(); //List of clsQuestion's members
+    private List<String> cat = new ArrayList<String>();//This list is used to populate spinner2
+    protected Random ran=new Random();
+    private clsQuestion selectedQuestion;
     private GoogleApiClient client;
-    //String user;
-
+    protected int score;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         Intent act = getIntent();
         String name = act.getExtras().getString("parameter");
 
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        score=0;
+        Welcome = (TextView) findViewById(R.id.welcome);
+        AnswerButton = (Button) findViewById(R.id.AnswerButton);
+        QuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
+        Close = (Button) findViewById(R.id.close);
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        Welcome.setText("Καλωσήρθες χρήστη: " + name);
+        radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
+        radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
+        radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
+        radioButton9 = (RadioButton) findViewById(R.id.radioButton9);
+        radioG = (RadioGroup)  findViewById(R.id.radioG);
 
-        ValueEventListener john = mDatabase.addValueEventListener(new ValueEventListener() {
+
+        DatabaseReference mDatabase;                                    //Connect with Firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference();      //Take a Database's Shanpshot
+
+        ValueEventListener john = mDatabase.addValueEventListener( new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot category : dataSnapshot.getChildren())
+                for ( DataSnapshot category : dataSnapshot.getChildren() )     //Iterate between DB's categories
                 {
-                    for (DataSnapshot question : category.getChildren())
+                    cat.add(category.getKey().toString());                      //Adding category to the list
+                    for ( DataSnapshot question : category.getChildren() ) //Iterate between category's questions
                     {
-                        clsQuestion q = new clsQuestion(category.getKey(), question.getKey(), question.getValue().toString());
+                        clsQuestion q = new clsQuestion( category.getKey(), question.getKey() ); //Create new clsQuestion member
 
-                        questions.add(q);
-                        int i=questions.size()-1;
-                        Log.d("jolllllhn", questions.get(i).getqType()+ " "+ questions.get(i).getqQuestion() + " "+questions.get(i).getqAnswer());
+                        for( DataSnapshot answer: question.getChildren() ) //Iterate between question's possible answers
+                        {
+                            q.getqAnswers().add( answer.getKey().toString() ); //Add answer to clsQuestion q questions list
+
+
+                            if( answer.getValue().toString().equals("1") ) //Checking if answer has correct attribute
+                            {
+
+                                q.setCorrectAnswer( answer.getKey().toString() ); //Setting q's correctAnswer Attribute
+                            }
+
+                        }
+
+
+                        questions.add(q); //Adding Q in the list of Questions
 
                     }
                 }
@@ -83,22 +118,13 @@ public class QuizActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
+            public void onCancelled(DatabaseError databaseError)
+            {
+
             }
         });
 
 
-        Welcome = (TextView) findViewById(R.id.welcome);
-        AnswerButton = (Button) findViewById(R.id.AnswerButton);
-        QuestionButton = (Button) findViewById(R.id.QuestionButton);
-        QuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
-        AnswerTextView = (TextView) findViewById(R.id.AnswerTextView);
-        AnswerText = (EditText) findViewById(R.id.AnswerText);
-        Close = (Button) findViewById(R.id.close);
-        Welcome.setText("Καλωσήρθες χρήστη: " + name);
 
 
         Close.setOnClickListener(new View.OnClickListener() {
@@ -110,67 +136,58 @@ public class QuizActivity extends AppCompatActivity {
 
         });
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    public void init() {
+    public void init()
+    {
 
-        for(clsQuestion x: this.questions)
+        AnswerButton.setOnClickListener(new View.OnClickListener()
         {
-            Log.d("jo   lbbbbbbbbhn", x.getqType()+ " "+ x.getqQuestion() + " "+x.getqAnswer());
-        }
-        Questions = new String[]{"What's the name of this programming language ? ", "What's the opposite of black ?", "What's the capital of Greece ?"};
-        Answers = new String[]{"java", "white", "athens"};
-        CurrentQuestion = 0;
-        AnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckAnswer();
             }
         });
-        QuestionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowQuestion();
-            }
-        });
 
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cat);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter); //Setting spinner2's categories data
+        spinner2.setOnItemSelectedListener(new CustomOnItemSelectedListener()); //Adding spinner2's reaction when selecting item
 
     }
 
     //showquestions in quiz
     public void ShowQuestion() {
-        CurrentQuestion++;
-        if (CurrentQuestion == Questions.length)
-            CurrentQuestion = 0;
 
-        QuestionTextView.setText(Questions[CurrentQuestion]);
         AnswerText.setText(" ");
         AnswerTextView.setText(" ");
-
-
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("message");
-
-        //myRef.setValue("Hello, World!ggggggg");
-
     }
 
     //check correctivity of the answer
     public boolean isCorrect(String answer) {
-        return (answer.equalsIgnoreCase(Answers[CurrentQuestion]));
+        return true;
     }
 
     //say if is true or false the amnswer
-    public void CheckAnswer() {
-        String ans = AnswerText.getText().toString();
-        if (isCorrect(ans) == true)
-            AnswerTextView.setText("Σωστό");
+    public void CheckAnswer()
+    {
+        int id=radioG.getCheckedRadioButtonId();
+        RadioButton rb=(RadioButton) findViewById(id);
+        String a=rb.getText().toString();
+        if(selectedQuestion.getCorrectAnswer().equals(   a ))
+        {
+            score = score + 1;
+            Welcome.setText("SCORE: "+Integer.toString(score));
+            Log.d("jolllllhn", "CORRECT");
+
+        }
         else
-            AnswerTextView.setText("Λάθος!! Η σωστη ειναι : " + Answers[CurrentQuestion]);
+        {
+            Log.d("jolllllhn", "WRONG");
+        }
+
     }
 
 
@@ -215,13 +232,14 @@ public class QuizActivity extends AppCompatActivity {
     {
         private String qType;
         private String qQuestion;
-        private String qAnswer;
+        private List<String> qAnswers;
+        private String correctAnswer;
 
-        public clsQuestion( String t, String q, String a)
+        public clsQuestion( String t, String q )
         {
             this.qType = t;
             this.qQuestion = q;
-            this.qAnswer = a;
+            this.qAnswers = new ArrayList<String>();
         }
 
         public String getqType() {
@@ -240,13 +258,54 @@ public class QuizActivity extends AppCompatActivity {
             this.qQuestion = qQuestion;
         }
 
-        public String getqAnswer() {
-            return qAnswer;
+        public List<String> getqAnswers() {
+            return qAnswers;
         }
 
-        public void setqAnswer(String qAnswer) {
-            this.qAnswer = qAnswer;
+        public void setqAnswers(List<String> qAnswers) {
+            this.qAnswers = qAnswers;
         }
+
+        public String getCorrectAnswer() {
+            return correctAnswer;
+        }
+
+        public void setCorrectAnswer(String correctAnswer) {
+            this.correctAnswer = correctAnswer;
+        }
+    }
+
+    public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener
+    {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,long id)
+        {
+            String c = parent.getItemAtPosition(pos).toString();
+            List ql=new ArrayList<clsQuestion>();
+            for(clsQuestion x: questions)
+            {
+                if(x.getqType().equals(c))
+                {
+                    ql.add(x);
+                }
+            }
+
+
+            int x = ran.nextInt(ql.size());
+            selectedQuestion = (clsQuestion) ql.get(x);
+            QuestionTextView.setText(selectedQuestion.getqQuestion());
+            radioButton6.setText(selectedQuestion.getqAnswers().get(0));
+            radioButton7.setText(selectedQuestion.getqAnswers().get(1));
+            radioButton8.setText(selectedQuestion.getqAnswers().get(2));
+            radioButton9.setText(selectedQuestion.getqAnswers().get(3));
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+        }
+
     }
 
 }
