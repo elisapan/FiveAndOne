@@ -76,7 +76,7 @@ public class QuizActivity extends AppCompatActivity
         QuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
         Close = (Button) findViewById(R.id.close);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
-        //Welcome.setText("Καλωσήρθες χρήστη: " + name);
+        Welcome.setText("Καλωσήρθες στο παιχνίδι");
         radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
         radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
         radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
