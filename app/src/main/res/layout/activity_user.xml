@@ -12,29 +12,6 @@
     android:background="@drawable/bg"
     tools:context="com.teicm.fiveandone.User">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/back"
-        android:layout_marginStart="16dp"
-        android:background="@color/white"
-        android:id="@+id/btnBack"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Sex"
-        android:textAppearance="?android:textAppearance"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/SelectSex"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="129dp" />
-
 
     <TextView
         android:text="Name"
@@ -45,17 +22,6 @@
         android:layout_alignBottom="@+id/btnSubmit"
         android:layout_below="@+id/txtinput"
         android:layout_toStartOf="@+id/name_character" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Type here"
-        android:ems="10"
-        android:id="@+id/txtinput"
-        android:layout_below="@+id/name_character"
-        android:layout_alignStart="@+id/btnBack"
-        android:layout_marginStart="34dp" />
 
     <Button
         android:text="Submit"
@@ -124,16 +90,16 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/male"
-            android:text="Male"
-            android:layout_marginTop="26dp"
+            android:id="@+id/female"
+            android:text="Female"
             />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/female"
-            android:text="Female"
+            android:id="@+id/male"
+            android:text="Male"
+            android:layout_marginTop="26dp"
             />
 
         <TextView
@@ -149,6 +115,39 @@
 
     </RadioGroup>
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/back"
+        android:background="@color/white"
+        android:id="@+id/btnBack"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Sex"
+        android:textAppearance="?android:textAppearance"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/SelectSex"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/name_character" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Type here"
+        android:ems="10"
+        android:id="@+id/txtinput"
+        android:layout_marginStart="35dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -157,11 +156,28 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/name_character"
         android:textStyle="normal|bold"
+        android:layout_alignBottom="@+id/txtinput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="select hair collor"
+        android:textAppearance="?android:textAppearance"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/hair"
+        android:textStyle="normal|bold"
         android:layout_below="@+id/radioGroup"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/name_character" />
 
-
-
-
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/spinner_item"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/hair"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

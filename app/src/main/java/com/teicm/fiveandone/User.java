@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +24,53 @@ public class User extends AppCompatActivity {
     Button btnSubmit;
     ArrayList<String> Selection = new ArrayList<String>();
     ImageButton btnBack;
+    Spinner spinneru;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+
+
+
+        spinneru = (Spinner)findViewById(R.id.spinner);
+
+
+        spinneru.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                switch (i){
+
+                    case 0:
+                        Toast.makeText(getApplicationContext(),"the hair is Blond",Toast.LENGTH_LONG).show();
+                        break;
+                    case  1:
+                        Toast.makeText(getApplicationContext(),"the hair is Black",Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(getApplicationContext(),"the hair is Brown",Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
