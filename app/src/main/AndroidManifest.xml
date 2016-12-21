@@ -53,10 +53,10 @@
             </intent-filter>
         </activity>
 
-        
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity android:name=".MapQuiz" />
         <activity android:name=".StartMenuActivity">
             <intent-filter>
@@ -114,8 +114,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MultipleChoiceActivity" />
-        <activity android:name=".ResultActivity"></activity>
-
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".MusicSet"></activity>
     </application>
 
 </manifest>

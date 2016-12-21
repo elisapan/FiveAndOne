@@ -80,7 +80,8 @@
         android:layout_marginStart="23dp"
         android:layout_alignTop="@+id/rating_b"
         android:layout_toEndOf="@+id/textView4"
-        android:layout_marginTop="57dp" />
+        android:layout_marginTop="57dp"
+        android:onClick="btnRating" />
 
     <TextView
         android:text="This is a game made by the team FiveAndOne ,  as a project in Software Technology class.  "

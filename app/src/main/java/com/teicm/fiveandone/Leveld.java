@@ -10,16 +10,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class Leveld extends Activity
-{
+import static com.teicm.fiveandone.R.id.a;
+
+public class Leveld extends Activity {
 
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button show;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leveld);
 
@@ -43,17 +43,17 @@ public class Leveld extends Activity
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                if(selectedId==a){
-                    Toast.makeText(Leveld.this,
-                            radioButton.getText(),"Σωστο!!", Toast.LENGTH_SHORT).show();
+                if (selectedId == a) {
+                    radioButton.setText("Σωστό!!");
+                    radioButton.setEnabled(true);
                     Intent intent = new Intent(Leveld.this, MainActivity.class);
                     startActivity(intent);
+                } else {
+                    radioButton.setText("Λάθος!!");
+                    radioButton.setEnabled(true);
                 }
-                else{
-                    Toast.makeText(Leveld.this,
-                            radioButton.getText(),"Λαθος!!", Toast.LENGTH_SHORT).show();}
             }
-        }
-    });
-}
+        });
+    }
 
+}

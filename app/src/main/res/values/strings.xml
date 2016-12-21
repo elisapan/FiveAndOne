@@ -19,9 +19,9 @@
 
     <string-array name="hair_color">
 
-        <item name="blond"/>
-        <item name="black"/>
-        <item name="brown"/>
+        <item name="blond" />
+        <item name="black" />
+        <item name="brown" />
 
     </string-array>
 
