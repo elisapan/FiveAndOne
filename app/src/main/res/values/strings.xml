@@ -17,11 +17,12 @@
     <string name="green">green</string>
     <string name="brown">brown</string>
 
-    <string-array name="hair_color">
+    <string-array name="spinner_item">
+        <item>Blond</item>
 
-        <item name="blond" />
-        <item name="black" />
-        <item name="brown" />
+        <item>Black</item>
+
+        <item>Brown</item>
 
     </string-array>
 
