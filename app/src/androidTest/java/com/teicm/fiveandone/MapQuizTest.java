@@ -36,7 +36,7 @@ public class MapQuizTest extends ActivityInstrumentationTestCase2 <MapQuiz> {
         tWelcome = (TextView) cMain.findViewById(R.id.welcome);
         tAnswerButton = (Button) cMain.findViewById(R.id.AnswerButton);
         tQuestionButton = (Button) cMain.findViewById(R.id.QuestionButton);
-        tback = (Button) cMain.findViewById(R.id.back);
+        tback = (Button) cMain.findViewById(R.id.Back);
 
 
         setActivityInitialTouchMode(true);
